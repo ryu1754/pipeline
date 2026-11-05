@@ -1,17 +1,24 @@
-name: My First Pipeline
+name: Python 自动测试
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  hello:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Run first task
-        run: |
-          echo "Hello, GitHub Actions!"
-          echo "My first pipeline is running."
+      - name: 获取代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: 运行测试
+        run: python -m unittest -v
