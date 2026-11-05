@@ -1,0 +1,17 @@
+name: My First Pipeline
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run first task
+        run: |
+          echo "Hello, GitHub Actions!"
+          echo "My first pipeline is running."
